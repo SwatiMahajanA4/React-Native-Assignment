@@ -3,12 +3,16 @@ import React from 'react';
 import {HStack, NativeBaseProvider} from 'native-base';
 import TabViewItem from './TabViewItem';
 
-interface TabViewCompProps {
-  data: Array<any>;
-  footer?: boolean;
+interface ArrayDataType {
+  area: string;
+  length: number;
 }
 
-const TabViewComp = ({data, footer}: TabViewCompProps): JSX.Element => {
+interface TabViewCompProps {
+  data: Array<ArrayDataType>;
+}
+
+const TabViewComp = ({data}: TabViewCompProps): JSX.Element => {
   const [selected, setSelected] = React.useState(0);
   return (
     <NativeBaseProvider>
@@ -19,7 +23,6 @@ const TabViewComp = ({data, footer}: TabViewCompProps): JSX.Element => {
             selected={selected}
             setSelected={setSelected}
             text={item}
-            footer={footer}
             key={index}
           />
         ))}

@@ -8,7 +8,6 @@ interface TabViewItemProps {
   selected: number;
   setSelected: (number: number) => void;
   text: any;
-  footer?: boolean;
 }
 
 const TabViewItem = ({
@@ -16,30 +15,17 @@ const TabViewItem = ({
   selected,
   setSelected,
   text,
-  footer,
 }: TabViewItemProps) => {
-  const {setMyShiftsView, setSelectedCity} = React.useContext(DataContext);
+  const {setSelectedCity} = React.useContext(DataContext);
   return (
     <Pressable
       opacity={selected === number ? 1 : 0.5}
       py="3"
       flex={1}
-      onPress={
-        !footer
-          ? () => {
-              setSelectedCity(number);
-              setSelected(number);
-            }
-          : number === 0
-          ? () => {
-              setMyShiftsView(true);
-              setSelected(number);
-            }
-          : () => {
-              setMyShiftsView(false);
-              setSelected(number);
-            }
-      }>
+      onPress={() => {
+        setSelectedCity(number);
+        setSelected(number);
+      }}>
       <Center>
         <Text style={[styles.text]}>{`${text.area} (${text.length})`}</Text>
       </Center>
